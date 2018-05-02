@@ -1,0 +1,54 @@
+@CHARSET "UTF-8";
+body
+{
+    position: relative;
+    z-index:1;
+}
+
+/* 로고,메뉴 포함 header */
+header.top {
+	position:relative;
+    padding-left: 5px;
+    height:     100px;
+    width: 		100%;
+}
+
+/* CMD 공간 잡기 */
+div#tableContainer {
+	position: relative;
+	width: 100%;
+	display: table;
+	border-spacing:	10px;
+}
+div#tableRow {
+	display: table-row;
+    height: 400px;
+    margin: 0px 10px 0px 10px;
+    padding: 0px 0px 0px 0px;
+}
+
+/* side menu */
+.category {
+	border: 1px solid black;
+    background-position: 100%;
+    position: relative;
+    z-index:2;
+    display: table-cell;
+    width: 160px;
+    padding: 0;
+}
+
+
+/* CMD2 공간 잡기 */
+div#CMD2 { border: 1px solid black;
+    background-position: 100%;
+    position: relative;
+    z-index:2;
+    display: table-cell;
+    width: auto;
+    padding: 0;
+	color: black;
+}
+
+
+
