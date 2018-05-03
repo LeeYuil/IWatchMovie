@@ -102,7 +102,6 @@
 				onclick="detailOpen(<%=i%>)"></td>
 		</tr>
 		<tr id="movdetail<%=i%>" style="visibility: hidden;">
-			<td><%=bb.getMov_sel_pri()%>원</td>
 			<td><%=bb.getMov_time()%>분</td>
 			<td><%=ttr%></td>
 		</tr>

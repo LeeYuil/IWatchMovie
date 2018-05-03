@@ -311,6 +311,227 @@ public class AdminDAO {
 				try {con.close();} catch (SQLException ex) {}
 		}
 	}
+	
+	// 일반 리뷰
+	public List getReviewList()
+	{
+		List reviewList=new ArrayList();
+		sql = "select r.rev_code, b.member_id, r.rev_title, r.rev_date "
+				+ "from review r join booking b "
+				+ "on r.book_code = b.book_code "
+				+ "where rev_best=1 "
+				+ "order by rev_code desc";
+		
+		try {
+			con=getConnection();
+			pstmt=con.prepareStatement(sql);
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()){
+				AdminBean adminBean=new AdminBean();
+				adminBean.setRev_code(rs.getInt("rev_code"));
+				adminBean.setMember_id(rs.getString("member_id"));
+				adminBean.setRev_title(rs.getString("rev_title"));
+				adminBean.setRev_date(rs.getDate("rev_date"));
+				reviewList.add(adminBean);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null)
+				try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)
+				try{con.close();}catch(SQLException ex){}
+		}
+		return reviewList;
+	}
+	
+	// 리뷰 내용
+	public AdminBean getReview(int rev_code)
+	{
+		sql="select r.rev_code, b.member_id, r.rev_title, r.rev_info, r.rev_date "
+				+ "from review r join booking b "
+				+ "on r.book_code = b.book_code "
+				+ "where rev_code=?";
+		try {
+			con = getConnection();
+			pstmt=con.prepareStatement(sql);
+			pstmt.setInt(1, rev_code);
+			rs=pstmt.executeQuery();
+			
+			if(rs.next())
+			{
+				AdminBean adminBean = new AdminBean();
+				adminBean.setRev_code(rs.getInt("rev_code"));
+				adminBean.setMember_id(rs.getString("member_id"));
+				adminBean.setRev_title(rs.getString("rev_title"));
+				adminBean.setRev_info(rs.getString("rev_info"));
+				adminBean.setRev_date(rs.getDate("rev_date"));
+				return adminBean;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null)
+				try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)
+				try{con.close();}catch(SQLException ex){}
+		}
+		return null;
+	}
+	
+	public void updateReviewBest(int rev_code)
+	{
+		sql = "update review set rev_best=2 where rev_code=?";
+		
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rev_code);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null)
+				try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)
+				try{con.close();}catch(SQLException ex){}
+		}
+	}
+	
+	public void deleteReview(int rev_code)
+	{
+		sql = "delete from review where rev_code=?";
+		
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rev_code);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null)
+				try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)
+				try{con.close();}catch(SQLException ex){}
+		}
+	}
+	
+	public List getReviewBestList()
+	{
+		List reviewBestList = new ArrayList();
+		sql="select r.rev_code, b.member_id, r.rev_title, r.rev_info, r.rev_date "
+				+ "from review r join booking b "
+				+ "on r.book_code = b.book_code "
+				+ "where r.rev_best = 2 "
+				+ "order by rev_code desc";
+		
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()){
+				AdminBean adminBean = new AdminBean();
+				adminBean.setRev_code(rs.getInt("rev_code"));
+				adminBean.setMember_id(rs.getString("member_id"));
+				adminBean.setRev_title(rs.getString("rev_title"));
+				adminBean.setRev_info(rs.getString("rev_info"));
+				adminBean.setRev_date(rs.getDate("rev_date"));
+				reviewBestList.add(adminBean);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if(rs!=null)
+				try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)
+				try{con.close();}catch(SQLException ex){}
+		}
+		return reviewBestList;
+	}
+	
+	public int getRevBest(int rev_code)
+	{
+		int rev_best = 0;
+		sql = "select rev_best from review where rev_code=?";
+		
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, rev_code);
+			rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				rev_best = rs.getInt("rev_best");
+				return rev_best;
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}  finally {
+			if(rs!=null)
+				try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)
+				try{con.close();}catch(SQLException ex){}
+		}
+		
+		return rev_best;
+	}
+	
+	public void insertSeatStatus() 
+	{
+		sql = "select max(wat_code) from watch_schedule";
+		
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next())
+			{
+				sql = "insert into seat_status_watch_schedule "
+						+ "select	w.wat_code,s.seat_code,'n' "
+						+ "from 	watch_schedule w,hall h,seat s "
+						+ "where 	w.hal_code=h.hal_code "
+						+ "and 		h.hal_code=s.hal_code "
+						+ "and 		w.wat_code=?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, rs.getInt("max(wat_code)"));
+				pstmt.executeUpdate();
+			}
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		} finally {
+			if(rs!=null)
+				try{rs.close();}catch(SQLException ex){}
+			if(pstmt!=null)
+				try{pstmt.close();}catch(SQLException ex){}
+			if(con!=null)
+				try{con.close();}catch(SQLException ex){}
+		}
+	}
 }
 
 

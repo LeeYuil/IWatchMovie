@@ -40,6 +40,7 @@ public class ScheduleInsertAction implements Action {
 		if(result == 1)
 		{
 			adminDAO.insertSchedule(adminBean);
+			adminDAO.insertSeatStatus();
 			out.println("<script>");
 			out.println("alert('상영일정이 등록 되었습니다.')");
 			out.println("location.href='./ScheduleList.ad'");
@@ -52,8 +53,7 @@ public class ScheduleInsertAction implements Action {
 			out.println("</script>");
 		}
 		
-		
-		
+
 		return null;
 	}
 	

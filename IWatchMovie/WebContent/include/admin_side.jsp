@@ -14,8 +14,8 @@
 			<li>
 				<a href="#">리뷰관리</a>
 				<ul>
-					<li><a href="#">일반 리뷰</a></li>
-					<li><a href="#">베스트 리뷰</a></li>
+					<li><a href="./ReviewGeneralList.ad">일반 리뷰</a></li>
+					<li><a href="./ReviewBestList.ad">베스트 리뷰</a></li>
 				</ul>
 			</li>
 			<li><a href="./BookingList.ad">예매관리</a></li>

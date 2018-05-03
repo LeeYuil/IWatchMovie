@@ -28,12 +28,7 @@ public class NewsFrontController extends HttpServlet{
 		ActionForward forward=null;
 		Action action=null;
 		
-		if(command.equals("/News.ne"))
-		{
-			forward = new ActionForward();
-			forward.setPath("./home/home.jsp?CMD=../news/news.jsp");
-			forward.setRedirect(false);
-		} else if(command.equals("/Notice.ne"))
+		if(command.equals("/Notice.ne"))
 		{
 			action = new Notice();
 			try {

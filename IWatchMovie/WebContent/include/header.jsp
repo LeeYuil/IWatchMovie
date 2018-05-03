@@ -67,7 +67,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li class="active"><a href="./Home.ho">홈</a></li>
 					<li><a href="./Movie.mo">영화</a></li>
-					<li><a href="./News.ne">소식 & 이벤트</a></li>
+					<li><a href="./Notice.ne">소식 & 이벤트</a></li>
 <%
 				int man_grade = memberDAO.getMemberGrade(member_id);
 				

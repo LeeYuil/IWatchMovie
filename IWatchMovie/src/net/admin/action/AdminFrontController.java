@@ -222,6 +222,51 @@ public class AdminFrontController extends HttpServlet{
 				// TODO: handle exception
 				e.printStackTrace();
 			}
+		} else if(command.equals("/ReviewGeneralList.ad"))
+		{
+			action = new ReviewGeneralList();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		} else if(command.equals("/ReviewBestList.ad"))
+		{
+			action = new ReviewBestList();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		} else if(command.equals("/ReviewContent.ad"))
+		{
+			action = new ReviewContent();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		} else if(command.equals("/ReviewUpdateBest.ad"))
+		{
+			action = new ReviewUpdateBest();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
+		} else if(command.equals("/ReviewDelete.ad"))
+		{
+			action = new ReviewDelete();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
 		} 
 		
 

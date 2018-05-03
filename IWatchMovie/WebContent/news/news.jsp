@@ -7,7 +7,7 @@
 	String CMD2 = request.getParameter("CMD2");
 	if(CMD2 == null)
 	{
-		CMD2 = "./news_default.jsp";
+		CMD2 = "/Notice.ne";
 	}
 %> 
 <!DOCTYPE html>

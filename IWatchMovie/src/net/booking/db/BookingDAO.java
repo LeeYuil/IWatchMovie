@@ -151,7 +151,10 @@ public class BookingDAO {
 	public ArrayList<BookingBean> getDateSchedule(int mov_code)
 	{
 		ArrayList<BookingBean> dateList = new ArrayList<BookingBean>();
-		sql = "select wat_date from watch_schedule where mov_code=?";
+		sql = "select distinct wat_date "
+				+ "from watch_schedule "
+				+ "where mov_code=? "
+				+ "order by wat_date";
 		
 		try {
 			con = getConnection();
